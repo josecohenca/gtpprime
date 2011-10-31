@@ -3,7 +3,7 @@
   <parent>
     <artifactId>gtpTestClient</artifactId>
     <groupId>telco</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <relativePath>..</relativePath>
   </parent>
   <artifactId>gtpprime-api</artifactId>
