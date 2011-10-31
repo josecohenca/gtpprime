@@ -1,0 +1,44 @@
+--           Expanded ASN1 Module 'SS-Errors'            
+--SIEMENS ASN.1 Compiler         R6.31  (Production_6.31)    
+--            Date: 2010-06-07 Time: 14:17:10            
+
+SS-Errors{ 0 identified-organization (4) etsi (0) mobileDomain (0) gsm-Access (2) modules (3) ss-Errors (1) version12 (12) }
+
+DEFINITIONS
+
+::=
+
+BEGIN
+
+DUMMYCLASS ::=  CLASS {
+   &dummyID   INTEGER}
+
+resourcesNotAvailable ERROR  ::=  {
+   CODE     local      : 127
+   }
+
+maxNumberOfMPTY-ParticipantsExceeded ERROR  ::=  {
+   CODE     local      : 126
+   }
+
+invalidDeflectedToNumber ERROR  ::=  {
+   CODE     local      : 125
+   }
+
+specialServiceCode ERROR  ::=  {
+   CODE     local      : 124
+   }
+
+deflectionToServedSubscriber ERROR  ::=  {
+   CODE     local      : 123
+   }
+
+rejectedByNetwork ERROR  ::=  {
+   CODE     local      : 122
+   }
+
+rejectedByUser ERROR  ::=  {
+   CODE     local      : 121
+   }
+
+END

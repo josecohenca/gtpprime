@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>gtpTestClient</artifactId>
+		<groupId>telco</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>gtpprime-asn1cdr</artifactId>
+	<repositories>
+		<repository>
+			<id>repository.k-int.com</id>
+			<url>http://developer.k-int.com/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.directory.shared</groupId>
+			<artifactId>shared-asn1</artifactId>
+			<version>0.9.19</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.shared</groupId>
+			<artifactId>shared-asn1-codec</artifactId>
+			<version>0.9.19</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.shared</groupId>
+			<artifactId>shared-asn1-api</artifactId>
+			<version>1.0.0-M8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.directory.shared</groupId>
+			<artifactId>shared-asn1-ber</artifactId>
+			<version>1.0.0-M8</version>
+		</dependency>
+		<dependency>
+			<groupId>directory-asn1</groupId>
+			<artifactId>asn1-codec</artifactId>
+			<version>0.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>directory-asn1</groupId>
+			<artifactId>stub-compiler</artifactId>
+			<version>0.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>20040616</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jzkit</groupId>
+			<artifactId>a2j</artifactId>
+			<version>2.0.4</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<echo>Running ASN.1 Compliation - output to
+									${project.build.directory}/generated/main/java</echo>
+								<mkdir dir="${project.build.directory}/generated/main/java" />
+								<taskdef classname="org.jzkit.a2j.codec.comp.A2JAntTask"
+									classpathref="maven.compile.classpath" name="asn2java" />
+                                <!--  <echo>Precompiling the WLAN ASN.1 (3GPP 32.298 Release 11)</echo>
+                                  <asn2java basePackage="org.jzkit.z3950.gen.v3"
+                                    output="${project.build.directory}/generated/main/java"
+                                    inputAsnFile="${project.basedir}/src/main/resources/asn1/32.298/wlan.asn1" /> -->
+								<echo>Precompiling the PS ASN.1 (3GPP 32.298 Release 11)</echo>
+								<asn2java basePackage="org.protocol.gtp.prime.gen.cdr32298.ps"
+									output="${project.build.directory}/generated/main/java"
+									inputAsnFile="${project.basedir}/src/main/resources/asn1/32.298/ps.asn1" />
+							</tasks>
+							<sourceRoot>${project.build.directory}/generated/main/java</sourceRoot>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.sun</groupId>
+						<artifactId>tools</artifactId>
+						<version>1.4</version>
+						<scope>system</scope>
+						<systemPath>${java.home}/../lib/tools.jar</systemPath>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
