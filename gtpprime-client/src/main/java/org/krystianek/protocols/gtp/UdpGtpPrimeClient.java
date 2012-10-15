@@ -29,8 +29,8 @@ public class UdpGtpPrimeClient extends UdpGtpPrime {
 	
 	private static final Logger _log = Logger.getLogger(GtpPrimeTestMain.class.getName());
 	
-	//private static final String TEST_GTP_IP = "192.168.122.1";
-	private static final String TEST_GTP_IP = "127.0.0.1";
+	private static final String TEST_GTP_IP = "192.168.122.168";
+	//private static final String TEST_GTP_IP = "127.0.0.1";
 	private static final int TEST_GTP_PORT = 3386;
 	
 	public UdpGtpPrimeClient() {

@@ -29,4 +29,10 @@ public class GtpPrimeInformationElementTV extends GtpPrimeInformationElement {
 		this.value = value;
 	}
 
+        public String informationElementSpecificToString() {
+        	StringBuilder b = new StringBuilder("    value = ");
+                b.append(value);
+		return b.toString();
+        }
+
 }

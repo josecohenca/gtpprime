@@ -21,7 +21,7 @@ public class GtpPrimeInformationElementTLV extends GtpPrimeInformationElement {
 	 *
 	 */
 	public GtpPrimeInformationElementTLV(byte[] arr, int startIndex) {
-		super(arr[startIndex]);
+		super((short)(arr[startIndex] & 0x00ff));
 		int length = (arr[startIndex+1] << 8) + arr[startIndex+2];		
 		this.arr = Arrays.copyOfRange(arr, startIndex+3, startIndex+3+length);
 	}
@@ -55,5 +55,20 @@ public class GtpPrimeInformationElementTLV extends GtpPrimeInformationElement {
 	public int getTotalSize() {
 		return arr.length + 3;
 	}
+
+	public byte[] getContent() {
+		return arr;
+        }
+
+	public String informationElementSpecificToString() {
+                StringBuilder b = new StringBuilder("    length  = ");
+                b.append(arr.length);
+                b.append('\n');
+                b.append("    totalSize = ");
+                b.append(getTotalSize());
+		b.append("\n    data = ");
+                b.append(arr);
+                return b.toString();
+        }
 	
 }

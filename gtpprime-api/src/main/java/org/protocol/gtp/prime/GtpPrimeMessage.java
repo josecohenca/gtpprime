@@ -40,10 +40,9 @@ public class GtpPrimeMessage {
 			start += tlv.getTotalSize();								
 		} else {
 			// TV
-			addInformationElement(new GtpPrimeInformationElementTV((short)type,(short)message[start+1]));
+			addInformationElement(new GtpPrimeInformationElementTV((short)(type & 0x00FF),(short)(message[start+1] & 0x00FF)));
 			start += 2;
 		}
-		
 		if (start < message.length) decodeIets(message, start);
 	}
 	
@@ -89,5 +88,12 @@ public class GtpPrimeMessage {
 		}
 		return tmp;
 	}
-	
+
+        public String toString() {
+            StringBuilder b = new StringBuilder();
+            b.append(this.header.toString());
+            for (GtpPrimeInformationElement gtpie : iet)
+               b.append(gtpie.toString());
+            return b.toString();
+        }	
 }

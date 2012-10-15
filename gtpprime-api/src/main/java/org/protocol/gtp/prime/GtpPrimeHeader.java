@@ -131,6 +131,21 @@ public class GtpPrimeHeader {
 	public void setSequenceNumber(int sequenceNumber) {
 		this.sequenceNumber = sequenceNumber;
 	}
-	
 
+	public String toString() {
+		StringBuilder str = new StringBuilder("GtpHeader { \n");	
+                str.append("    version = ");
+                str.append(version);
+                str.append("\n    protocolType = ");
+                str.append(pt);
+                str.append("\n    messageType = ");
+                str.append(messageType);
+                str.append("\n    length = ");
+                str.append(length);
+                str.append("\n    sequenceNumber = ");
+                str.append(sequenceNumber);
+                str.append("\n}\n");
+                return str.toString();
+
+        }
 }
