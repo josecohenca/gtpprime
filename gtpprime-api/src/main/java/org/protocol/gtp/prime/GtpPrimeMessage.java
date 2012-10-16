@@ -26,11 +26,12 @@ public class GtpPrimeMessage {
 	
 	public GtpPrimeMessage(GtpPrimeHeader header, byte[] message) {
 		this.header = header;
-		decodeIets(message, 6);
+		decodeIets(message, 6, getPayloadSize());
 	}
 	
-	private void decodeIets(byte[] message, int start) {
-		if (start >= message.length) return;
+	private void decodeIets(byte[] message, int start, int end) {
+	        	
+		if ((start >= end) || (start >= message.length)) return;
 		byte type = message[start];
 		
 		// TLV
@@ -43,7 +44,7 @@ public class GtpPrimeMessage {
 			addInformationElement(new GtpPrimeInformationElementTV((short)(type & 0x00FF),(short)(message[start+1] & 0x00FF)));
 			start += 2;
 		}
-		if (start < message.length) decodeIets(message, start);
+		if (start < end) decodeIets(message, start, end);
 	}
 	
 	public byte[] toByteArray() {		
@@ -96,4 +97,21 @@ public class GtpPrimeMessage {
                b.append(gtpie.toString());
             return b.toString();
         }	
+
+	
+	public int getPayloadSize() {
+	    return header.getLength();
+	}
+
+	public int getMessageSize() {
+	    return getPayloadSize() + header.getHeaderSize();
+	}
+
+	public int getTotalMessageSize() {
+	   int size = header.getHeaderSize();
+	   for (GtpPrimeInformationElement gtpie : iet)
+		size += gtpie.getTotalSize();
+	   return size;
+	}
+
 }

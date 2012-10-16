@@ -23,8 +23,8 @@ public abstract class GtpPrimeInformationElement {
 	}
 	
 	public abstract byte[] toByteArray();
-
         public abstract String informationElementSpecificToString();
+	public abstract int getTotalSize();
 
         public String toString() {
            StringBuilder b = new StringBuilder("InformationElement {\n");

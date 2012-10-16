@@ -148,4 +148,8 @@ public class GtpPrimeHeader {
                 return str.toString();
 
         }
+
+	public int getHeaderSize() {
+		return 6;
+	}
 }

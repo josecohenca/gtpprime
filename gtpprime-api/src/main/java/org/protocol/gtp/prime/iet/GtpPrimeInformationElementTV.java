@@ -35,4 +35,8 @@ public class GtpPrimeInformationElementTV extends GtpPrimeInformationElement {
 		return b.toString();
         }
 
+	public int getTotalSize() {
+		return 2;
+	}
+
 }
