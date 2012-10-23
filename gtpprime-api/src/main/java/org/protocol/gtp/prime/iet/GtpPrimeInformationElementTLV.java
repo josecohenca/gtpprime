@@ -22,7 +22,8 @@ public class GtpPrimeInformationElementTLV extends GtpPrimeInformationElement {
 	 */
 	public GtpPrimeInformationElementTLV(byte[] arr, int startIndex) {
 		super((short)(arr[startIndex] & 0x00ff));
-		int length = (arr[startIndex+1] << 8) + arr[startIndex+2];		
+		int length = ((arr[startIndex+1] & 0x00ff) << 8) + (arr[startIndex+2] & 0x00ff);		
+		
 		this.arr = Arrays.copyOfRange(arr, startIndex+3, startIndex+3+length);
 	}
 

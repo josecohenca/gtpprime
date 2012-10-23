@@ -35,6 +35,9 @@ public class GtpPrimeHeader {
 	private byte version = 0, pt = -1;
 	private int messageType = -1;
 	private int length = 0, sequenceNumber = 0; 
+   
+	public static final String CHECK_SPARE_BITS_CHECK_PROPERTY = "gtpprime.header.checksparebits";
+        private boolean checkSpareBits = Boolean.parseBoolean(System.getProperty(GtpPrimeHeader.CHECK_SPARE_BITS_CHECK_PROPERTY,"true"));
 	
 	/**
 	 * Constructor for decoding the GTP' header from an existing message
@@ -67,7 +70,7 @@ public class GtpPrimeHeader {
 		byte first = message[0];
 		
 		// Check if spare field consists of ones
-		if (((first >> 1) & 0x07) != 0x07) throw new UnrecognizedMessageException("Message is not of type GTP' : Spare part is not '111'");
+		if ((checkSpareBits)&&(((first >> 1) & 0x07) != 0x07)) throw new UnrecognizedMessageException("Message is not of type GTP' : Spare part is not '111'");
 		pt = (byte)((first >> 4) & 0x01);
 		
 		if (pt != GtpPrimeConstants.GTP_PRIME_PROTOCOL_TYPE) throw new UnrecognizedMessageException("Message is not of type GTP' : ProtocolType field is not GTP'");
