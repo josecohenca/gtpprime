@@ -60,7 +60,7 @@
 			<version>2.0.4</version>
 		</dependency>
 	</dependencies>
-	<build>
+<!--	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -76,12 +76,12 @@
 									${project.build.directory}/generated/main/java</echo>
 								<mkdir dir="${project.build.directory}/generated/main/java" />
 								<taskdef classname="org.jzkit.a2j.codec.comp.A2JAntTask"
-									classpathref="maven.compile.classpath" name="asn2java" />
+									classpathref="maven.compile.classpath" name="asn2java" /> -->
                                 <!--  <echo>Precompiling the WLAN ASN.1 (3GPP 32.298 Release 11)</echo>
                                   <asn2java basePackage="org.jzkit.z3950.gen.v3"
                                     output="${project.build.directory}/generated/main/java"
                                     inputAsnFile="${project.basedir}/src/main/resources/asn1/32.298/wlan.asn1" /> -->
-								<echo>Precompiling the PS ASN.1 (3GPP 32.298 Release 11)</echo>
+<!--								<echo>Precompiling the PS ASN.1 (3GPP 32.298 Release 11)</echo>
 								<asn2java basePackage="org.protocol.gtp.prime.gen.cdr32298.ps"
 									output="${project.build.directory}/generated/main/java"
 									inputAsnFile="${project.basedir}/src/main/resources/asn1/32.298/ps.asn1" />
@@ -108,5 +108,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build> -->
 </project>
