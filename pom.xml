@@ -10,6 +10,7 @@
 		<module>gtpprime-api</module>
 		<module>gtpprime-client</module>
 		<module>gtpprime-asn1cdr</module>
+		<module>gtpprime-camel</module>
 	</modules>
 	<build>
 		<plugins>
