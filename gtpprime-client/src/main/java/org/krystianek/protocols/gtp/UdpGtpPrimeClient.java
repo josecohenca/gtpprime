@@ -6,11 +6,11 @@ package org.krystianek.protocols.gtp;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.socket.DatagramChannel;
+import org.krystianek.protocols.gtp.gtpprime.configuration.GtpPrimeConfiguration;
 import org.protocol.gtp.prime.GtpPrimeMessageFactory;
 import org.protocol.gtp.prime.constants.GtpPrimeConstants;
 import org.protocol.gtp.prime.helpers.CDRProvider;
@@ -20,6 +20,8 @@ import org.protocol.gtp.prime.messages.GtpPrimeDataRecordTransferRequest;
 import org.protocol.gtp.prime.messages.GtpPrimeDataRecordTransferSequenceRelease;
 import org.protocol.gtp.prime.messages.GtpPrimeEchoResponse;
 import org.protocol.gtp.prime.messages.GtpPrimeVersionNotSupported;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author krychu
@@ -27,11 +29,11 @@ import org.protocol.gtp.prime.messages.GtpPrimeVersionNotSupported;
  */
 public class UdpGtpPrimeClient extends UdpGtpPrime {
 	
-	private static final Logger _log = Logger.getLogger(GtpPrimeTestMain.class.getName());
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	
-	private static final String TEST_GTP_IP = "192.168.122.168";
-	//private static final String TEST_GTP_IP = "127.0.0.1";
-	private static final int TEST_GTP_PORT = 3386;
+	private static final GtpPrimeConfiguration config = new GtpPrimeConfiguration(); 
+	private static final String TEST_GTP_IP = config.getIpAddress();
+	private static final int TEST_GTP_PORT = config.getPort();
 	
 	public UdpGtpPrimeClient() {
 	    	    	    	    
@@ -128,17 +130,14 @@ public class UdpGtpPrimeClient extends UdpGtpPrime {
     	Object msg = event.getMessage();
     	if (msg instanceof GtpPrimeEchoResponse)
     	{    		
-    		_log.info("recognized Echo Response message...");
+    		log.info("recognized Echo Response message...");
     		//GtpPrimeMessage response = handleGtpPrimeMessage((GtpPrimeEchoRequestMessage)msg);
     		//event.getChannel().write(response,event.getRemoteAddress());
     	}
 
     	if (msg instanceof GtpPrimeVersionNotSupported) {
     		int version = ((GtpPrimeVersionNotSupported) msg).getHeader().getVersion();
-    		_log.info("recognized VersionNotSupported... Latest version supported is : " + version);
-    		
-    		
-    		
+    		log.info("recognized VersionNotSupported... Latest version supported is : " + version);		
     	}
 
     	

@@ -4,29 +4,30 @@
 package org.krystianek.protocols.gtp;
 
 import java.net.InetSocketAddress;
-import java.util.logging.Logger;
 
 import org.jboss.netty.channel.ChannelHandlerContext;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.socket.DatagramChannel;
+import org.krystianek.protocols.gtp.gtpprime.configuration.GtpPrimeConfiguration;
 import org.krystianek.protocols.gtp.gtpprime.constants.GtpPrimeCommunicationConstants;
 import org.protocol.gtp.prime.GtpPrimeMessage;
 import org.protocol.gtp.prime.messages.GtpPrimeDataRecordTransferRequest;
 import org.protocol.gtp.prime.messages.GtpPrimeEchoRequest;
 import org.protocol.gtp.prime.messages.GtpPrimeNodeAliveRequest;
 import org.protocol.gtp.prime.messages.GtpPrimeRedirectionRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author krychu
  *
  */
 public class UdpGtpPrimeServer extends UdpGtpPrime {
-
-	//private static final String IP_HOST="192.168.122.1";
-	private static final String IP_HOST="127.0.0.1";
 	
-	private static final Logger _log = Logger.getLogger(UdpGtpPrimeServer.class.getName());
-	private InetSocketAddress addr = new InetSocketAddress(IP_HOST, GtpPrimeCommunicationConstants.GTP_PORT);	
+	private static final GtpPrimeConfiguration config = new GtpPrimeConfiguration();
+	
+	private final Logger log = LoggerFactory.getLogger(getClass());
+	private InetSocketAddress addr = new InetSocketAddress(config.getIpAddress(), config.getPort());	
 	
 	public void initializeUDPTransport() {
 		super.initializeUDPTransport();	    
@@ -42,27 +43,27 @@ public class UdpGtpPrimeServer extends UdpGtpPrime {
 	}
 
 	public void handleGtpPrimeMessage(GtpPrimeMessage msg) {
-		_log.info("Recognized Base Message");
+		log.info("Recognized Base Message");
 	}
 
 	
 	public GtpPrimeMessage handleGtpPrimeMessage(GtpPrimeEchoRequest msg) {
-		_log.info("Recognized Echo Message");
+		log.info("Recognized Echo Message");
 		return msg.getResponse();
 	}
 	
 	public GtpPrimeMessage handleGtpPrimeMessage(GtpPrimeNodeAliveRequest msg) {
-		_log.info("Recognized NodeAlive Message");
+		log.info("Recognized NodeAlive Message");
 		return msg.getResponse();
 	}
 	
 	public GtpPrimeMessage handleGtpPrimeMessage(GtpPrimeRedirectionRequest msg) {
-		_log.info("Recognized GtpPrimeRedirectionRequest Message");
+		log.info("Recognized GtpPrimeRedirectionRequest Message");
 		return msg.getResponse();
 	}
 
 	public GtpPrimeMessage handleGtpPrimeMessage(GtpPrimeDataRecordTransferRequest msg) {
-		_log.info("Recognized GtpPrimeDataRecordTransferRequest Message");
+		log.info("Recognized GtpPrimeDataRecordTransferRequest Message");
 		return msg.getResponse((short)0);
 	}	
 	
@@ -87,8 +88,7 @@ public class UdpGtpPrimeServer extends UdpGtpPrime {
     	{
     		response = handleGtpPrimeMessage((GtpPrimeDataRecordTransferRequest)msg);
     	}
-    	
-    	
+    	    	
     	if (response != null)
     		event.getChannel().write(response,event.getRemoteAddress());
     	

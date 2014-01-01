@@ -3,7 +3,9 @@
  */
 package org.krystianek.protocols.gtp;
 
-import java.util.logging.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author krychu
@@ -11,22 +13,21 @@ import java.util.logging.Logger;
  */
 public class GtpPrimeTestMain {
 
-	private static final Logger _log = Logger.getLogger(GtpPrimeTestMain.class
-			.getName());
+	private static final Logger log = LoggerFactory.getLogger(GtpPrimeTestMain.class);
 
 	public GtpPrimeTestMain() {
 
 	}
 
 	public static UdpGtpPrimeServer initializeGtpServer() {
-		_log.info("Starting the GTP' server...");
+		log.info("Starting the GTP' server...");
 		UdpGtpPrimeServer server = new UdpGtpPrimeServer();
 		server.initializeUDPTransport();
 		return server;
 	}
 
 	public static UdpGtpPrimeClient initializeGtpClient() {
-		_log.info("Starting the GTP' client...");
+		log.info("Starting the GTP' client...");
 		UdpGtpPrimeClient client = new UdpGtpPrimeClient();
 		client.initializeUDPTransport();
 		return client;
@@ -63,7 +64,7 @@ public class GtpPrimeTestMain {
 			}
 //		}
 		
-		_log.info("Closing the GTP' client & server");
+		log.info("Closing the GTP' client & server");
 
 		server.closeUDPTransport();
 		client.closeUDPTransport();
