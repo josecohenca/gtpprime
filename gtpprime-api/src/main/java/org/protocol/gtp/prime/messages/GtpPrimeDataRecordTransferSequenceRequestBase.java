@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import org.protocol.gtp.prime.GtpPrimeHeader;
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 import org.protocol.gtp.prime.helpers.SequenceProvider;
 import org.protocol.gtp.prime.iet.GtpPrimeInformationElementTLV;
 
@@ -41,12 +41,12 @@ public class GtpPrimeDataRecordTransferSequenceRequestBase extends
 	}
 	
 	public void addCancelledSequences(SequenceProvider provider) {
-		this.addSequences(GtpPrimeConstants.GTP_PRIME_IET_SEQUENCE_NUMBERS_CANCELLED, provider);		
+		this.addSequences(GtpPrime3gppConstants.GTP_PRIME_IET_SEQUENCE_NUMBERS_CANCELLED, provider);		
 	}
 	
 
 	public void addReleasedSequences(SequenceProvider provider) {
-		this.addSequences(GtpPrimeConstants.GTP_PRIME_IET_SEQUENCE_NUMBERS_RELEASED, provider);
+		this.addSequences(GtpPrime3gppConstants.GTP_PRIME_IET_SEQUENCE_NUMBERS_RELEASED, provider);
 	}
 		
 }

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.protocol.gtp.prime.GtpPrimeHeader;
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 import org.protocol.gtp.prime.exception.UnrecognizedMessageException;
 
 public class GtpPrimeHeaderTest {
@@ -57,7 +57,7 @@ public class GtpPrimeHeaderTest {
 	private void validateHeader(GtpPrimeHeader header) {
 		assertEquals(1, header.getVersion());
 		assertEquals(0, header.getPt());
-		assertEquals(GtpPrimeConstants.GTP_PRIME_DATA_RECORD_TRANSFER_REQUEST,
+		assertEquals(GtpPrime3gppConstants.GTP_PRIME_DATA_RECORD_TRANSFER_REQUEST,
 				header.getMessageType());
 		assertEquals(743, header.getLength());
 		assertEquals(0x0006, header.getSequenceNumber());

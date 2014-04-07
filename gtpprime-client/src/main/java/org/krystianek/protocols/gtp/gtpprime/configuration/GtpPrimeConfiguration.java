@@ -3,7 +3,7 @@
  */
 package org.krystianek.protocols.gtp.gtpprime.configuration;
 
-import org.krystianek.protocols.gtp.gtpprime.constants.GtpPrimeCommunicationConstants;
+import org.protocol.gtp.prime.constants.GtpPrimeCommunicationConstants;
 
 /**
  * @author krystian

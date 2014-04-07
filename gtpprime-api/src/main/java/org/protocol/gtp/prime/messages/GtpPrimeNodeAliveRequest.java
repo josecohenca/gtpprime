@@ -8,7 +8,7 @@ import java.net.InetSocketAddress;
 import org.protocol.gtp.prime.GtpPrimeHeader;
 import org.protocol.gtp.prime.GtpPrimeMessage;
 import org.protocol.gtp.prime.GtpPrimeMessageFactory;
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 import org.protocol.gtp.prime.iet.GtpPrimeInformationElementTLV;
 
 /**
@@ -19,14 +19,14 @@ public class GtpPrimeNodeAliveRequest extends GtpPrimeMessage {
 
 	private void addCGateway(String ip) {
 		this.addInformationElement(new GtpPrimeInformationElementTLV(
-				GtpPrimeConstants.GTP_PRIME_IET_CHARGING_GATEWAY_ADDRESS,
+				GtpPrime3gppConstants.GTP_PRIME_IET_CHARGING_GATEWAY_ADDRESS,
 				new InetSocketAddress(ip, 0).getAddress().getAddress()));
 		
 	}
 	
 	private void init(String ip) {
 		this.getHeader().setMessageType(
-				GtpPrimeConstants.GTP_PRIME_NODE_ALIVE_REQUEST);
+				GtpPrime3gppConstants.GTP_PRIME_NODE_ALIVE_REQUEST);
 		addCGateway(ip);
 	}
 

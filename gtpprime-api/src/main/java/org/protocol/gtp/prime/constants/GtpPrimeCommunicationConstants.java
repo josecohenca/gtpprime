@@ -1,4 +1,4 @@
-package org.krystianek.protocols.gtp.gtpprime.constants;
+package org.protocol.gtp.prime.constants;
 
 public class GtpPrimeCommunicationConstants {
 

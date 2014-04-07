@@ -1,6 +1,6 @@
 package org.protocol.gtp.prime.constants;
 
-public class GtpPrimeConstants {
+public class GtpPrime3gppConstants {
 
 	public static final int GTP_PRIME_PROTOCOL_TYPE = 0;
 	

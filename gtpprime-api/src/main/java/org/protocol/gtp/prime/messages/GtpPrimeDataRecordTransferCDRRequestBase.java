@@ -7,7 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 import org.protocol.gtp.prime.GtpPrimeHeader;
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 import org.protocol.gtp.prime.helpers.CDRProvider;
 import org.protocol.gtp.prime.iet.GtpPrimeInformationElementTLV;
 
@@ -44,7 +44,7 @@ public class GtpPrimeDataRecordTransferCDRRequestBase extends
 			out.write(cdr);
 		}
 		
-		this.addInformationElement(new GtpPrimeInformationElementTLV(GtpPrimeConstants.GTP_PRIME_IET_DATA_RECORD_PACKET, out.toByteArray()));
+		this.addInformationElement(new GtpPrimeInformationElementTLV(GtpPrime3gppConstants.GTP_PRIME_IET_DATA_RECORD_PACKET, out.toByteArray()));
 		
 	}
 

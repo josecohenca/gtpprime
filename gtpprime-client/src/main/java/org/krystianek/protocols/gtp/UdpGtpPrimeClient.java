@@ -12,7 +12,7 @@ import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.socket.DatagramChannel;
 import org.krystianek.protocols.gtp.gtpprime.configuration.GtpPrimeConfiguration;
 import org.protocol.gtp.prime.GtpPrimeMessageFactory;
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 import org.protocol.gtp.prime.helpers.CDRProvider;
 import org.protocol.gtp.prime.helpers.SequenceProvider;
 import org.protocol.gtp.prime.messages.GtpPrimeDataRecordTransferCDRRequest;
@@ -53,7 +53,7 @@ public class UdpGtpPrimeClient extends UdpGtpPrime {
 	}
 
 	public void sendSampleRedirectionRequest() {
-	    c.write(GtpPrimeMessageFactory.createRedirectionRequestMessage(GtpPrimeConstants.GTP_PRIME_IET_CAUSE_NODE_GOING_DOWN,"192.168.122.1","fe80::224:d7ff:febd:559c"),new InetSocketAddress(TEST_GTP_IP, TEST_GTP_PORT));	    	   		
+	    c.write(GtpPrimeMessageFactory.createRedirectionRequestMessage(GtpPrime3gppConstants.GTP_PRIME_IET_CAUSE_NODE_GOING_DOWN,"192.168.122.1","fe80::224:d7ff:febd:559c"),new InetSocketAddress(TEST_GTP_IP, TEST_GTP_PORT));	    	   		
 	}
 
 	class TestCDRProvider implements CDRProvider {

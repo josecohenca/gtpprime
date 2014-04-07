@@ -4,7 +4,7 @@
  */
 package org.protocol.gtp.prime;
 
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 import org.protocol.gtp.prime.exception.UnrecognizedMessageException;
 
 /**
@@ -56,9 +56,9 @@ public class GtpPrimeHeader {
 
 	private void initDefaults() {
 		version = 2;
-		pt = GtpPrimeConstants.GTP_PRIME_PROTOCOL_TYPE;
+		pt = GtpPrime3gppConstants.GTP_PRIME_PROTOCOL_TYPE;
 		length = 0;
-		messageType = GtpPrimeConstants.GTP_PRIME_ECHO_REQUEST;
+		messageType = GtpPrime3gppConstants.GTP_PRIME_ECHO_REQUEST;
 		sequenceNumber = 0;
 	}
 	
@@ -73,7 +73,7 @@ public class GtpPrimeHeader {
 		if ((checkSpareBits)&&(((first >> 1) & 0x07) != 0x07)) throw new UnrecognizedMessageException("Message is not of type GTP' : Spare part is not '111'");
 		pt = (byte)((first >> 4) & 0x01);
 		
-		if (pt != GtpPrimeConstants.GTP_PRIME_PROTOCOL_TYPE) throw new UnrecognizedMessageException("Message is not of type GTP' : ProtocolType field is not GTP'");
+		if (pt != GtpPrime3gppConstants.GTP_PRIME_PROTOCOL_TYPE) throw new UnrecognizedMessageException("Message is not of type GTP' : ProtocolType field is not GTP'");
 		
 		version = (byte)((first >> 5) & 0x07);
 		messageType = (short)convertByteToInt(message[1]);

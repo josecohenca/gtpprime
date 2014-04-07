@@ -1,6 +1,6 @@
 package org.protocol.gtp.prime;
 
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 import org.protocol.gtp.prime.exception.UnrecognizedMessageException;
 import org.protocol.gtp.prime.messages.GtpPrimeDataRecordTransferCDRDuplRequest;
 import org.protocol.gtp.prime.messages.GtpPrimeDataRecordTransferCDRRequest;
@@ -82,16 +82,16 @@ public class GtpPrimeMessageFactory {
 		GtpPrimeMessage tmp = null;
 		
 		switch (msg[7]) {
-			case GtpPrimeConstants.GTP_PRIME_IET_PTC_SEND_DATA:
+			case GtpPrime3gppConstants.GTP_PRIME_IET_PTC_SEND_DATA:
 				tmp = new GtpPrimeDataRecordTransferCDRRequest(header,msg);
 				break;
-			case GtpPrimeConstants.GTP_PRIME_IET_PTC_SEND_DUPLDATA:
+			case GtpPrime3gppConstants.GTP_PRIME_IET_PTC_SEND_DUPLDATA:
 				tmp = new GtpPrimeDataRecordTransferCDRDuplRequest(header,msg);
 				break;
-			case GtpPrimeConstants.GTP_PRIME_IET_PTC_CANCEL_DATA:
+			case GtpPrime3gppConstants.GTP_PRIME_IET_PTC_CANCEL_DATA:
 				tmp = new GtpPrimeDataRecordTransferSequenceCancel(header,msg);
 				break;
-			case GtpPrimeConstants.GTP_PRIME_IET_PTC_RELEASE_DATA:
+			case GtpPrime3gppConstants.GTP_PRIME_IET_PTC_RELEASE_DATA:
 				tmp = new GtpPrimeDataRecordTransferSequenceRelease(header,msg);
 				break;
 		}
@@ -105,38 +105,38 @@ public class GtpPrimeMessageFactory {
 		GtpPrimeMessage tmp = null;
 		
 		switch (header.getMessageType()) {
-		case GtpPrimeConstants.GTP_PRIME_ECHO_REQUEST:
+		case GtpPrime3gppConstants.GTP_PRIME_ECHO_REQUEST:
 			tmp = new GtpPrimeEchoRequest(header, msg);
 			break;
-		case GtpPrimeConstants.GTP_PRIME_ECHO_RESPONSE:
+		case GtpPrime3gppConstants.GTP_PRIME_ECHO_RESPONSE:
 			tmp = new GtpPrimeEchoResponse(header, msg);
 			break;
 		
-		case GtpPrimeConstants.GTP_PRIME_NODE_ALIVE_REQUEST:
+		case GtpPrime3gppConstants.GTP_PRIME_NODE_ALIVE_REQUEST:
 			tmp = new GtpPrimeNodeAliveRequest(header, msg);			
 			break;
 
-		case GtpPrimeConstants.GTP_PRIME_NODE_ALIVE_RESPONSE:
+		case GtpPrime3gppConstants.GTP_PRIME_NODE_ALIVE_RESPONSE:
 			tmp = new GtpPrimeNodeAliveResponse(header, msg);
 			break;			
 		
-		case GtpPrimeConstants.GTP_PRIME_VERSION_NOT_SUPPORTED:			
+		case GtpPrime3gppConstants.GTP_PRIME_VERSION_NOT_SUPPORTED:			
 			tmp = new GtpPrimeVersionNotSupported(header,msg);
 			break;
 
-		case GtpPrimeConstants.GTP_PRIME_REDIRECTION_REQUEST:			
+		case GtpPrime3gppConstants.GTP_PRIME_REDIRECTION_REQUEST:			
 			tmp = new GtpPrimeRedirectionRequest(header,msg);
 			break;
 
-		case GtpPrimeConstants.GTP_PRIME_REDIRECTION_RESPONSE:	
+		case GtpPrime3gppConstants.GTP_PRIME_REDIRECTION_RESPONSE:	
 			tmp = new GtpPrimeRedirectionResponse(header,msg);
 			break;
 			
-		case GtpPrimeConstants.GTP_PRIME_DATA_RECORD_TRANSFER_REQUEST:			
+		case GtpPrime3gppConstants.GTP_PRIME_DATA_RECORD_TRANSFER_REQUEST:			
 			tmp = decodeDataRecordTransfer(header,msg);
 			break;
 
-		case GtpPrimeConstants.GTP_PRIME_DATA_RECORD_TRANSFER_RESPONSE:			
+		case GtpPrime3gppConstants.GTP_PRIME_DATA_RECORD_TRANSFER_RESPONSE:			
 			tmp = new GtpPrimeDataRecordTransferResponse(header,msg);
 			break;			
 			

@@ -5,7 +5,7 @@ package org.protocol.gtp.prime.messages;
 
 import org.protocol.gtp.prime.GtpPrimeHeader;
 import org.protocol.gtp.prime.GtpPrimeMessage;
-import org.protocol.gtp.prime.constants.GtpPrimeConstants;
+import org.protocol.gtp.prime.constants.GtpPrime3gppConstants;
 
 /**
  * @author krychu
@@ -15,7 +15,7 @@ public class GtpPrimeDataRecordTransferRequest extends GtpPrimeMessage {
 
 	public GtpPrimeDataRecordTransferRequest() {
 		super();
-		this.getHeader().setMessageType(GtpPrimeConstants.GTP_PRIME_DATA_RECORD_TRANSFER_REQUEST);
+		this.getHeader().setMessageType(GtpPrime3gppConstants.GTP_PRIME_DATA_RECORD_TRANSFER_REQUEST);
 		
 /*		this.addInformationElement(new GtpPrimeInformationElementTV(
 				GtpPrimeConstants.GTP_PRIME_IET_PACKET_TRANSFER_COMMAND,
