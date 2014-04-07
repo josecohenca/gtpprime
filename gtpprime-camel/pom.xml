@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>telco</groupId>
-    <artifactId>gtpTestClient</artifactId>
+    <artifactId>gtpprime-parent</artifactId>
     <version>0.0.1</version>
   </parent>
   <groupId>telco</groupId>
